@@ -31,8 +31,10 @@
     function **b1** performs dummy operations like adding elements (a tuple with 2 elements inside) to a list, and function **a1** only performs addition operation. To enhance that we need to call these functions, and of course perform multiple operations on the list that are returned from **b1**. Let's create a function "b2" (b in this scenario stands for basic_operations).
     
     ```python
+    
     def b2(targetList: list) -> list:
       return [sum(element) for element in targetList]
+      
     ```
     
   Now there's something particular, and now we performs operations within the elements in targetArray, basic addition operations, and then we return the updated list.
