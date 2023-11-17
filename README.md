@@ -8,12 +8,8 @@
   The usage of this framework is simple & straightforward.
   Here's an example Python function that accepts 2 parameters (param 1 has int as annotation, as well as param 2):
   
-      ```python
-      
       def a1(a: int, b: int):
         return a+b
-      ```
-      ```python
       
 def b1(level1:int=2, level2:int=64):
     elementsToTest = []
@@ -24,4 +20,3 @@ def b1(level1:int=2, level2:int=64):
             temp.append(n+1)
             n += 1
         elementsToTest.append(tuple(temp))
-      ```
