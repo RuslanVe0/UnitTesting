@@ -25,8 +25,10 @@
     It performs a basic arithmetic operation (addition) of the product of two values (in this case they're integers as types).
 
   Function B1:
-    It's purpose is to test a1 with different values. Inside (level-2, 2nd dimension of the array) will have elements like (1,2), (3,4) ... (n, n) as "n" to be the product of a value 
+    It's purpose is to test a1 with different values. Inside (level-2, 2nd dimension of the list (which is a tuple, and consists of integer-like elements) will have elements like (1,2), (3,4) ... (n, n) as "n" to be the product of a value 
     that is added with one each time, that will be level1(size)*level2(size) times n, based on both iterations.
+    For the present and current state, the algorithm is dummy. It does not perform any kind of special operations, both functions can be acccessed, however the difference is that
+    function **b1** performs dummy operations like adding elements (a tuple with 2 elements inside) to a list, and function **a1** only performs addition operation.
 
 ### How to use this framework as a module?
   The usage of this framework is simple & straightforward.
