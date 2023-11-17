@@ -11,7 +11,7 @@
       def a1(a: int, b: int):
         return a+b
       
-    def b1(level1:int=2, level2:int=64):
+      def b1(level1:int=2, level2:int=64):
         elementsToTest = []
         n = 0
         while len(elementsToTest) < level2:
@@ -20,3 +20,6 @@
                 temp.append(n+1)
                 n += 1
             elementsToTest.append(tuple(temp))
+      
+      It performs a basic arithmetic operation (addition) of the product of two values (in this case they're integers as types).
+      We can create a testing function, which will test function a1. Let's call it - b1.
