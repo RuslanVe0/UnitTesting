@@ -5,10 +5,10 @@
 
 
 ### Basics
-  Here's an example Python function that accepts 2 parameters (param 1 has int as annotation, as well as param 2) (let's call the functions a1 and b1 as unique names:
+  Here's an example Python function that accepts 2 parameters (param 1 has int as annotation, as well as param 2) (let's create it with functions, and call the functions a1 and b1 as unique names:
   ```python
 
-      def a1(a: int, b: int):
+      def a1(a: int, b: int) -> list:
         return a+b
       
       def b1(level1:int=2, level2:int=64):
@@ -28,7 +28,13 @@
     It aims is to test a1 with different values. Inside (level-2, 2nd dimension of the list (which is a tuple, and consists of integer-like elements) will have elements like (1,2), (3,4) ... (n, n) as "n" to be the product of a value 
     that is added with one each time, that will be level1(size)*level2(size) times n, based on both iterations.
     For the present and current state, the algorithm is dummy. It does not perform any kind of special operations, both functions can be acccessed, however the difference is that
-    function **b1** performs dummy operations like adding elements (a tuple with 2 elements inside) to a list, and function **a1** only performs addition operation.
+    function **b1** performs dummy operations like adding elements (a tuple with 2 elements inside) to a list, and function **a1** only performs addition operation. To enhance that we need to call these functions, and of course perform multiple operations on the list that are returned from **b1**. Let's create a function "b2" (b in this scenario stands for basic_operations).
+    ```python
+    def b2(targetList: list) -> list:
+      return [sum(element) for element in targetList]
+    ```
+    Now there's something particular, and now we performs operations within the elements in targetArray, basic addition operations, and then we return the updated list.
+    
 
-### How to use this framework as a module?
-  The usage of this framework is simple & straightforward.
+### How to use this project as a module?
+  The usage of this project is simple & straightforward.
