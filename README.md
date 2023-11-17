@@ -20,6 +20,7 @@
                 temp.append(n+1)
                 n += 1
             elementsToTest.append(tuple(temp))
+        return elementsToTest
   ```
   Function A1:
     It performs a basic arithmetic operation (addition) of the product of two values (in this case they're integers as types).
