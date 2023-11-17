@@ -50,7 +50,6 @@
   It'll detour the whole testVals list, and with its actual index will check for correctness between the returned value and the value from correctVals list.
 
 ### Basics of this project
-```
   Provided operations are, in "operations" class located in "operations.py" file:
      *addition(...)*: The purpose of this function is to perform basic addition operations, where user must provide arguments.
        Further information:
@@ -70,6 +69,5 @@
         :warnings - the parameter expects a boolean value (1|0) (True | False) to be provided and used for alerting the user what actually happens.
          
      *subtraction(...)*: The purpose of this function is to perform basic subtraction operations, where user must provide arguments.
-```
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
