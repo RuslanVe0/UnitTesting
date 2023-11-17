@@ -38,7 +38,16 @@
   ```
     
   Now there's something particular, and now we performs operations within the elements in targetArray, basic addition operations, and then we return the updated list.
-    
+  Hence after that was implemented, let's use the create elements and call N-times (in this case 64 times) "a1" function
+  ```python
+    testVals = b1()
+    correctVals = b2()
+    for index, element in enumerate(testVals, 0):
+      if correctVals[index] == a1(*element): print("Success!")
+      else: print("Unsucess!")
+  ```
+  Under these basic principles this project works.
+  It'll detour the whole testVals list, and with its actual index will check for correctness between the returned value and the value from correctVals list.
 
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
