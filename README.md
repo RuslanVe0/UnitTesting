@@ -10,7 +10,7 @@
       ```python
       def a1(a: int, b: int):
         return a+b
-      ```
+        
       It performs a basic arithmetic operation (addition) of the product of two values (in this case they're integers as types).
       We can create a testing function, which will test function a1. Let's call it - b1.
       ```python
