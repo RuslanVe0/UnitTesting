@@ -49,5 +49,27 @@
   Under these basic principles this project works.
   It'll detour the whole testVals list, and with its actual index will check for correctness between the returned value and the value from correctVals list.
 
+### Basics of this project
+```
+  Provided operations are, in "operations" class located in "operations.py" file:
+     *addition(...)*: The purpose of this function is to perform basic addition operations, where user must provide arguments.
+       Further information:
+                  (where :keyword, param)
+        :values - the parameter expects elements of type list in a tuple to be provided, and of course according to the function that is about
+        to be implemented.
+            e.g (addition as function)([a1:(int), a2:(int), a3:(int), ..., limit:(int)]) where limit = system maximum capacity or size.
+            Note:
+                if provided non-integer values, hence these values will be skipped.
+        
+        :stored - the paremeter expects a boolean value (1|0) (True | False) to be provided, it's default value is: False. That argument is required
+        to point whether there are nested elements.
+            e.g: ([[1,2,3,4], [1,2,3,4,5,[[[[6]]]]]]), in this case stored must be True.
+
+        :verbosity - the parameter expects a boolean value (1|0) (True|False) to be provided and use for verbosity output.
+
+        :warnings - the parameter expects a boolean value (1|0) (True | False) to be provided and used for alerting the user what actually happens.
+         
+     *subtraction(...)*: The purpose of this function is to perform basic subtraction operations, where user must provide arguments.
+```
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
