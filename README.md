@@ -5,8 +5,9 @@
 
 
 ### Basics
-  Here's an example Python function that accepts 2 parameters (param 1 has int as annotation, as well as param 2):
+  Here's an example Python function that accepts 2 parameters (param 1 has int as annotation, as well as param 2) (let's call the functions a1 and b1 as unique names:
   ```python
+
       def a1(a: int, b: int):
         return a+b
       
