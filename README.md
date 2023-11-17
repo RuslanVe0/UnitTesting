@@ -60,14 +60,5 @@
             Note:
                 if provided non-integer values, hence these values will be skipped.
         
-        :stored - the paremeter expects a boolean value (1|0) (True | False) to be provided, it's default value is: False. That argument is required
-        to point whether there are nested elements.
-            e.g: ([[1,2,3,4], [1,2,3,4,5,[[[[6]]]]]]), in this case stored must be True.
-
-        :verbosity - the parameter expects a boolean value (1|0) (True|False) to be provided and use for verbosity output.
-
-        :warnings - the parameter expects a boolean value (1|0) (True | False) to be provided and used for alerting the user what actually happens.
-         
-     *subtraction(...)*: The purpose of this function is to perform basic subtraction operations, where user must provide arguments.
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
