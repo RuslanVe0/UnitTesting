@@ -150,6 +150,7 @@ The next operation is to call *perform_changes(...)* method, it is important to 
 The next operation is assertEquals, this is the step that can be regarded as important. It compares all values, by detouring the *stored* list, and comparing if the returned value from the target function
 is equal to the correct element.
 Parameters regarding to *assertEquals(...)*:
+
   ```
   element: list, the user is required to provide a target list that will be iterated, that specific parameter is not being used: if "is_created" parameter is set to True.
   correct_element: list, the user is required to provide a list that includes all correct elements, if "is_created" parameter is set to True, ergo it must consists the test elements on the inside and as well as the expected element.
