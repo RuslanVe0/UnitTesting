@@ -95,6 +95,6 @@ onto the list. You can experiment with it.
 Let's dive deeper, and instead of defining our own function and manually to create a list, to create it automatically using the method *create_test_values(...)*.
 The required parameters are: rangeVals which parameter requires a list with 2 elements inside. 1st element must be either a tuple or a list, and it must signify the interval between the values
 that are required to be provided. The other element must be a type, here's is due to user choice and needs. Here's an example
-  create_test_values(rangeVals=[(1, 255), int]), thus we can interpret that the interval is (1, 255) and the type that we need is *int*.
+  create_test_values(rangeVals=[(1, 255), int]), thus we can interpret that the interval is (1; 255) and the type that we need is *int*.
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
