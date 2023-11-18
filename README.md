@@ -161,5 +161,6 @@ Parameters regarding to *assertEquals(...)*:
   is_created: bool (optional), if in case the values were automatically generated.
   manualOperation: bool (optional), if in case the values were manually generated.
   ```
+
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
