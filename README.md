@@ -50,9 +50,10 @@
   It'll detour the whole testVals list, and with its actual index will check for correctness between the returned value and the value from correctVals list.
 
 ### Basics of this project
-  Provided operations are, in "operations" class located in "operations.py" file:
+  Provided operations:
      <p style="margin-right: 15px"> *addition(...)*: The purpose of this function is to perform basic addition operations, where user must provide arguments. </p>
-  
-        
+      <p style="margin-right: 15px"> *subtraction(...)*: The purpose of this function is to perform basic subtraction operations, where user must provide arguments. </p>
+      <p style="margin-right: 15px"> *division(...)*: The purpose of this function is to perform basic division operations, where user must provide arguments. </p>
+      <p style="margin-right: 15px"> *multiplication(...)*: The purpose of this function is to perform basic multiplication operations, where user must provide arguments. </p>
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
