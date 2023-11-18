@@ -101,5 +101,20 @@ The required parameters are:
     that are required to be provided. The other element must be a type, here's is due to user choice and needs. Here's an example
     create_test_values(rangeVals=[(1, 255), int]), thus we can interpret that the interval is (1; 255) and the type that we need is *int*.
 ```
+Parameters which do not require an argument to be passed:
+```
+  size: int:
+    This parameter is the 1st level length of the list. This has nothing to do with the length of the parameters a function has.
+  innerSize: int:
+    This parameter is the 2nd level length of the list, which is for the length of the parameters a function has.
+  random_: bool (optional):
+    This parameter is required to point whether the values that will be generated to be randomized.
+  args: dict (optional):
+    This parameter will be used later, while generating values in method 'genAccordingType(...)'.
+```
+This method, the purpose of this method, is to generate a list with elements inside. The array consists of 1st level elements, and 2nd level elements.
+Where in the first level, it's important to note that, it includes N count of elements. There's no limitation based on the elements that can be added
+in the first level of the array: (example [(1,2,3,4), (45,33,21,77), ... N)]). While the 2nd level of array is important, ergo it consists elements according
+to the function parameter length (param1, param2 ... paramN), where paramN points how many elements is required to be added in the 2nd level of the array.
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
