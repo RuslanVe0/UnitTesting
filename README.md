@@ -1,3 +1,4 @@
+<html>
 <style>
   .container {
       border-width: 50px;
@@ -101,3 +102,4 @@ if __name__ == "__main__":
 </div>
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
+</html>
