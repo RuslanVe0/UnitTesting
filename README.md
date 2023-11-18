@@ -37,7 +37,7 @@
       
   ```
     
-  Now there's something particular, and now we performs operations within the elements in targetArray, basic addition operations, and then we return the updated list.
+  Now there's something particular, and now we performs operations within the elements in targetList, basic addition operations, and then we return the updated list.
   Hence after that was implemented, let's use the create elements and call N-times (in this case 64 times) "a1" function
   ```python
     testVals = b1()
@@ -115,5 +115,21 @@ This method, the purpose of this method, is to generate a list with elements ins
 Where in the first level, it's important to note that, it includes N count of elements. There's no limitation based on the elements that can be added
 in the first level of the array: (example [(1,2,3,4), (45,33,21,77), ... N)]). While the 2nd level of array is important, ergo it consists elements according
 to the function parameter length (param1, param2 ... paramN), where paramN points how many elements is required to be added in the 2nd level of the array.
+```python
+from utils.unitTest import operations
+from utils.unitTest.unittesting import unitTest
+
+# we will use again the same function, with same length of parameters, and same unique name "a1(...)".
+def a1(a: int, b: int) -> int:
+    return a+b
+
+if __name__ == "__main__":
+  example_usage = unitTest(a1, verbosity=True) # call "unitTest(...)" class, and load function.
+  example_usage.create_test_values(rangeVals=[(1, 64), int], size=64, inner_Size=example_usage.function.get_arg_length(), random_=True)
+  example_usage.perform_basic_operations(testValues=example_usage.test_values, operation="addition", type_only=int, verbosity=True)
+  example_usage.perform_changes(type_required=int)
+  example_usage.assertEquals(element=example_usage.test_values, correct_element=example_usage.stored, strict_equals=True, is_created=True)
+  
+```
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
