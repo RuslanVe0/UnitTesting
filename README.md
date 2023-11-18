@@ -51,14 +51,8 @@
 
 ### Basics of this project
   Provided operations are, in "operations" class located in "operations.py" file:
-     *addition(...)*: The purpose of this function is to perform basic addition operations, where user must provide arguments.
-       Further information:
-                  (where :keyword, param)
-        :values - the parameter expects elements of type list in a tuple to be provided, and of course according to the function that is about
-        to be implemented.
-            e.g (addition as function)([a1:(int), a2:(int), a3:(int), ..., limit:(int)]) where limit = system maximum capacity or size.
-            Note:
-                if provided non-integer values, hence these values will be skipped.
+     <p> *addition(...)*: The purpose of this function is to perform basic addition operations, where user must provide arguments. </p>
+  
         
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
