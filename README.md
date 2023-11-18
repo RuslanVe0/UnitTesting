@@ -5,7 +5,7 @@
 
 
 ### Basics
-  ##Section 1.1
+  **Section 1.1**
   Here's an example Python function that accepts 2 parameters (param 1 has int as annotation, as well as param 2) (let's create it with functions, and call the functions a1 and b1 as unique names:
   ```python
 
@@ -37,7 +37,7 @@
       return [sum(element) for element in targetList]
       
   ```
-  #Section 1.2
+  **Section 1.2**
   Now there's something particular, and now we performs operations within the elements in targetList, basic addition operations, and then we return the updated list.
   Hence after that was implemented, let's use the create elements and call N-times (in this case 64 times) "a1" function
   ```python
@@ -50,7 +50,7 @@
   Under these basic principles this project works.
   It'll detour the whole testVals list, and with its actual index will check for correctness between the returned value and the value from correctVals list.
 
-### Basics of this project
+### Basics of the project
   Provided operations:
      <p style="margin-right: 15px"> *addition(...)*: The purpose of this function is to perform basic addition operations, where user must provide arguments. </p>
       <p style="margin-right: 15px"> *subtraction(...)*: The purpose of this function is to perform basic subtraction operations, where user must provide arguments. </p>
@@ -58,7 +58,8 @@
       <p style="margin-right: 15px"> *multiplication(...)*: The purpose of this function is to perform basic multiplication operations, where user must provide arguments. </p>
       <p style="margin-right: 15px"> *concate(...)*: The purpose of this function is to perform basic concate operations, where user must provide arguments. </p>
 
-  Section 1.3
+  **Section 1.1**
+  
   Let's experiment a bit. These operations are located in "operations.py" file.
   We'll use the same template as we used before, we will have the functions (a1, b1), where
   function a1 accepts two parameters (a annotation: integer, b annotation: integer), and returns an *integer* as value.
@@ -93,7 +94,7 @@ if __name__ == "__main__":
   ```
 The value returned from any operation available (whether it is: addition, subtraction, multiplication, division or concate) it returns it as an object, where the user can perform various operations on the list. You can experiment with it.
 
-#Section 2.1
+**Section 1.2**
 Let's dive deeper, and instead of defining our own function and manually to create a list, to create it automatically using the method *create_test_values(...)*.
 The required parameters are:
 ```
@@ -134,8 +135,8 @@ if __name__ == "__main__":
   example_usage.assertEquals(element=example_usage.test_values, correct_element=example_usage.stored, strict_equals=True, is_created=True)
   
 ```
-#Section 2.2
+**Section 1.3**
 The purpose of *perform_basic_operations(...)* as a method, is to perform operations on the target list (which "test_vakues" is the variable that holds it, and which is part of the class. 
-The basic operations are: addition, subtraction, division, multiplication, concatenation. That method uses operations from "operations.py", which we described in section 2.1.
+The basic operations are: addition, subtraction, division, multiplication, concatenation. That method uses operations from "operations.py", which we described in section 1.2.
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
