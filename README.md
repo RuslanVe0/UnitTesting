@@ -146,6 +146,20 @@ Parameters regarding to perform_basic_operations are:
   args_for_operation: dict = {}. Specific args provided by user to be used, while calling the desired operation;
   ```
 <br>
-
+The next operation is to call *perform_changes(...)* method, it is important to note that I programmed this method in case if there are bugs going on within test_values. It is not essential to call it.
+The next operation is assertEquals, this is the step that can be regarded as important. It compares all values, by detouring the *stored* list, and comparing if the returned value from the target function
+is equal to the correct element.
+Parameters regarding to *assertEquals(...)*:
+  ```
+  element: list, the user is required to provide a target list that will be iterated, that specific parameter is not being used: if "is_created" parameter is set to True.
+  correct_element: list, the user is required to provide a list that includes all correct elements, if "is_created" parameter is set to True, ergo it must consists the test elements on the inside and as well as the expected element.
+  text: str (optional), this parameter is due to user's choice. The user can set whatever text he wants.
+  text_on_correct: str (optional), this parameter is again due to user's choice. The user can set whatever text he wants, if the comparison between the correct and the returned value from the function it'll output the text that the user inputed.
+  strict_equals: bool (optional), this parameter can be set to True, if the user requires a more detailed and enhanced comparison between the elements.
+  strict_equals_args: dict (optional), this parameter is used for arguments based on *strict_equals(...)* method.
+  values_Stored: bool (optional), if in case values are stored.
+  is_created: bool (optional), if in case the values were automatically generated.
+  manualOperation: bool (optional), if in case the values were manually generated.
+  ```
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
