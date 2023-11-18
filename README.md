@@ -1,3 +1,10 @@
+<style>
+  .container {
+      border-width: 50px;
+      background: white;
+  }
+</style>
+
 # UnitTesting
 
 ### Introduction:
@@ -50,6 +57,7 @@
   It'll detour the whole testVals list, and with its actual index will check for correctness between the returned value and the value from correctVals list.
 
 ### Basics of this project
+<div class="container">
   Provided operations:
      <p style="margin-right: 15px"> *addition(...)*: The purpose of this function is to perform basic addition operations, where user must provide arguments. </p>
       <p style="margin-right: 15px"> *subtraction(...)*: The purpose of this function is to perform basic subtraction operations, where user must provide arguments. </p>
@@ -89,5 +97,6 @@ if __name__ == "__main__":
             print("Unsuccess")
 
   ```
+</div>
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
