@@ -55,5 +55,37 @@
       <p style="margin-right: 15px"> *subtraction(...)*: The purpose of this function is to perform basic subtraction operations, where user must provide arguments. </p>
       <p style="margin-right: 15px"> *division(...)*: The purpose of this function is to perform basic division operations, where user must provide arguments. </p>
       <p style="margin-right: 15px"> *multiplication(...)*: The purpose of this function is to perform basic multiplication operations, where user must provide arguments. </p>
+      <p style="margin-right: 15px"> *concate(...)*: The purpose of this function is to perform basic concate operations, where user must provide arguments. </p>
+
+  Let's experiment a bit. These operations located in "operations.py" file.
+  We'll use the same template as we used before, we will have the functions (a1, b1).
+  ```python
+ from utils.unitTest import operations
+
+def a1(a: int, b: int) -> list:
+    return a+b
+      
+def b1(level1:int=2, level2:int=64):
+    elementsToTest = []
+    n = 0
+    while len(elementsToTest) < level2:
+        temp = []
+        while len(temp) < level1:
+            temp.append(n+1)
+            n += 1
+        elementsToTest.append(tuple(temp))
+    return elementsToTest
+
+# now let's use as example: addition.
+if __name__ == "__main__":
+    targetList = b1()
+    opnod = operations.addition(targetList, sep=True)
+    for index, element in enumerate(opnod.value, 0):
+        if a1(*targetList[index]) == element:
+            print("Success!")
+        else:
+            print("Unsuccess")
+
+  ```
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
