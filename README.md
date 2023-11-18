@@ -51,7 +51,7 @@
 
 ### Basics of this project
   Provided operations are, in "operations" class located in "operations.py" file:
-     <p> *addition(...)*: The purpose of this function is to perform basic addition operations, where user must provide arguments. </p>
+     <p style="margin-right: 15px"> *addition(...)*: The purpose of this function is to perform basic addition operations, where user must provide arguments. </p>
   
         
 ### How to use this project as a module?
