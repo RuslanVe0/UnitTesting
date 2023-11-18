@@ -1,5 +1,5 @@
-from utils.unitTest import operations
-from utils.unitTest.unittesting import unitTest
+from unitTest import operations
+from unitTest.unittesting import unitTest
 
 # we will use again the same function, with same length of parameters, and same unique name "a1(...)".
 def a1(a: int, b: int) -> int:
