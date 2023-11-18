@@ -89,8 +89,7 @@ if __name__ == "__main__":
             print("Unsuccess")
 
   ```
-The value returned from any operation available (whether it is: addition, subtraction, multiplication, division or concate) it returns it as an object, where the user can perform varius operations
-onto the list. You can experiment with it.
+The value returned from any operation available (whether it is: addition, subtraction, multiplication, division or concate) it returns it as an object, where the user can perform various operations on the list. You can experiment with it.
 
 Let's dive deeper, and instead of defining our own function and manually to create a list, to create it automatically using the method *create_test_values(...)*.
 The required parameters are:
