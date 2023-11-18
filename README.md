@@ -57,12 +57,14 @@
       <p style="margin-right: 15px"> *multiplication(...)*: The purpose of this function is to perform basic multiplication operations, where user must provide arguments. </p>
       <p style="margin-right: 15px"> *concate(...)*: The purpose of this function is to perform basic concate operations, where user must provide arguments. </p>
 
-  Let's experiment a bit. These operations located in "operations.py" file.
-  We'll use the same template as we used before, we will have the functions (a1, b1).
+  Let's experiment a bit. These operations are located in "operations.py" file.
+  We'll use the same template as we used before, we will have the functions (a1, b1), where
+  function a1 accepts two parameters (a annotation: integer, b annotation: integer), and returns an *integer* as value.
+  function b1 accepts two parameters (with default *integer* values)
   ```python
  from utils.unitTest import operations
 
-def a1(a: int, b: int) -> list:
+def a1(a: int, b: int) -> int:
     return a+b
       
 def b1(level1:int=2, level2:int=64):
