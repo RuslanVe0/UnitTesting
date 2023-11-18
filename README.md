@@ -1,7 +1,8 @@
 <style>
   .container {
       border-width: 50px;
-      background: white;
+      border-color: white;
+      border-style: dotted;
   }
 </style>
 
