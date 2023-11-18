@@ -146,5 +146,6 @@ Parameters regarding to perform_basic_operations are:
   args_for_operation: dict = {}. Specific args provided by user to be used, while calling the desired operation;
   ```
 <br>
+
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
