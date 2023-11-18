@@ -138,5 +138,6 @@ if __name__ == "__main__":
 **Section 1.3**
 The purpose of *perform_basic_operations(...)* as a method, is to perform operations on the target list (which "test_vakues" is the variable that holds it, and which is part of the class). 
 The basic operations are: addition, subtraction, division, multiplication, concatenation. That method uses operations from "operations.py", which we described in section 1.2.
+
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
