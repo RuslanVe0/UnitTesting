@@ -163,5 +163,18 @@ Parameters regarding to *assertEquals(...)*:
   manualOperation: bool (optional), if in case the values were manually generated.
   ```
 
+Let's use the functionality related to adding functions as operations, we'll use function b2 from section 1.1
+  ```python
+  def b2(targetList: list) -> list:
+      return [sum(element) for element in targetList]
+
+  def a1(x, y):
+      return x+y
+
+  if __name__ == "__main__":
+      x = []
+  
+  ```
+
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
