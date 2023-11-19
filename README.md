@@ -187,7 +187,13 @@ Let's use the functionality related to adding functions as operations, we'll use
 
   if __name__ == "__main__":
       example_usage = unitTest(a1, verbosity=True)
-
+      example_usage.add_function_for_creating_tests(function=b2)
+      _objectReference = example_usage.search_FunctionByName("b2")
+      example_usage.use_as_test_function(_object=_objectReference, size=1024, _type=[int, int], to_list=False, manual_innerSize=2)
+      example_usage.store_as_operations(_function=b2, manualKey="test", targetParams=(example_usage.test_values,))
+      function, params = example_usage.get_operation_function(name="test")
+      example_usage.use_as_operations(_function=function, _targetParams=params)
+      example_usage.assertEquals(example_usage.test_values, example_usage.stored, text_on_correct="Correct answers provided!", values_Stored=True, is_created=True, manualOperation=True)
   ```
   
 
