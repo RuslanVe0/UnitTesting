@@ -165,16 +165,31 @@ Parameters regarding to *assertEquals(...)*:
 
 Let's use the functionality related to adding functions as operations, we'll use function b2 from section 1.1
   ```python
+  from utils.unitTest import operations
+  from utils.unitTest.unittesting import unitTest
+
   def b2(targetList: list) -> list:
       return [sum(element) for element in targetList]
 
-  def a1(x, y):
+  def b1(level1:int=2, level2:int=64):
+        elementsToTest = []
+        n = 0
+        while len(elementsToTest) < level2:
+            temp = []
+            while len(temp) < level1:
+                temp.append(n+1)
+                n += 1
+            elementsToTest.append(tuple(temp))
+        return elementsToTest
+
+  def a1(x: int, y: int):
       return x+y
 
   if __name__ == "__main__":
-      x = []
-  
+      example_usage = unitTest(a1, verbosity=True)
+
   ```
+  
 
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
