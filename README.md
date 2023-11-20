@@ -195,6 +195,9 @@ Let's use the functionality related to adding functions as operations, we'll use
       example_usage.use_as_operations(_function=function, _targetParams=params)
       example_usage.assertEquals(example_usage.test_values, example_usage.stored, text_on_correct="Correct answers provided!", values_Stored=True, is_created=True, manualOperation=True)
   ```
+In this scenario we create, manually, a list of elements with size of 1024 (1st level), and 2nd level size of 2 elements. The function a1 still accepts 2 parameters.
+Method *add_function_for_creating_tests(...)* accepts 1 parameter, and that parameter requires a function be passed as an argument value. The function is added to a list,
+and then the user can interact with more functions than one and perform other various operations, experimentations, and overall tests.
   
 
 ### How to use this project as a module?
