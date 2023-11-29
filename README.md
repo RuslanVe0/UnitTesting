@@ -198,7 +198,42 @@ Let's use the functionality related to adding functions as operations, we'll use
 In this scenario we create, manually, a list of elements with size of 1024 (1st level), and 2nd level size of 2 elements. The function a1 still accepts 2 parameters.
 Method *add_function_for_creating_tests(...)* accepts 1 parameter, and that parameter requires a function be passed as an argument value. The function is added to a list,
 and then the user can interact with more functions than one and perform other various operations, experimentations, and overall tests.
-  
+
+If we use the module "profiler", we can also measure the implementation time of a function call. The purpose of "profiler" is: analysis based on time measures, and time profiling.
+```
+  # in this case:
+  from utils.unitTest import operations
+from utils.unitTest.unittesting import unitTest
+from utils.unitTest.profiler import timeProfiler
+
+
+
+# we will use again the same function, with same length of parameters, and same unique name "a1(...)".
+def a1(a: int, b: int) -> int:
+    return a+b
+
+
+
+if __name__ == "__main__":
+  example_usage = unitTest(a1, verbosity=False) # call "unitTest(...)" class, and load function.
+  example_usage.create_test_values(rangeVals=[(1, 5000), str], size=26, inner_Size=example_usage.function.get_arg_length(), random_=True,
+  args={"stringLengthMax" : 8})
+  example_usage.perform_basic_operations(testValues=example_usage.test_values, operation="concate", type_only=str)
+  #example_usage.perform_changes(type_required=int)
+  comp = timeProfiler(example_usage.assertEquals,
+  kwargs={"element":example_usage.test_values, "correct_element":example_usage.stored, "strict_equals":True}, runTests=1024)
+  results = comp.startProfiler()
+  run = results.run_analytics()
+  print(run)
+```
+timeProfiler accepts 3 parameters:
+  targetFunction: a method or a function is required to provided as argument.
+  kwargs: number parameters with values required for the targetFunction.
+  runTests (optional): to specify how much operations to be done with that function.
+In this case run analysis on the time measures. These analysis include:
+  * comparison analysis;
+  * basic statistics (max elements, min elements);
+    
 
 ### How to use this project as a module?
   The usage of this project is simple & straightforward.
