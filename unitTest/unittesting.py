@@ -5,6 +5,9 @@ from contextlib import contextmanager
 from utils.unitTest import operations as operationsBased
 from utils.unitTest.exceptions import Error
 import typing
+from random import randint, choice, shuffle
+import regex
+from string import ascii_lowercase, ascii_uppercase
 
 """
     This program, just for the experience, is to provide unit testing for the UCN project, which can be found in github (#TODO: upload
@@ -75,6 +78,7 @@ class AObj(object):
         super().__init__()
 
     def get_arg_length(self):
+        #print(dir(getfullargspec(self.actual_function)))
         return len(getfullargspec(self.actual_function).args)
     
     def get_args_no_regarding_matches(self):
@@ -134,6 +138,7 @@ class unitTest(inspect):
         self.stored_operations = {}
         self.cache_memory_tvc = []
         self.test_values = []
+        self.is_created_man = False
         self.additional_functions_map = []
         self.actualValues = None
         self.verbosity = verbosity
@@ -174,10 +179,6 @@ class unitTest(inspect):
         return function, params
 
     def store_as_operations(self, _function: object, manualKey: any = None, targetParams: tuple = ()) -> bool:
-        if not callable(_function):
-            # in case if the value in the parameter that holds it: '_function' is not a function, an error will be raised indicating
-            # to the user that it is not a function.
-            raise Error("0x0124af")
         __object = AObj(_function)
         manualKey = __object.get_name() if not manualKey else manualKey
         self.stored_operations[manualKey] = (__object, targetParams)
@@ -185,10 +186,6 @@ class unitTest(inspect):
 
     def use_as_operations(self, _function, _targetParameters: tuple):
         if not isinstance(_targetParameters, tuple): raise Error("0x0bad")
-        if not callable(_function):
-            # in case if the value in the parameter that holds it: '_function' is not a function, an error will be raised indicating
-            # to the user that it is not a function.
-            raise Error("0x0124af")
         if isinstance(_function, AObj):
             self.stored = _function.call_function(arguments=_targetParameters, flag=True)
         else:
@@ -217,7 +214,7 @@ class unitTest(inspect):
         
         return self._called == expected
 
-    def perform_basic_operations(self, testValues: list, operation: str, type_only: type, verbosity: bool = False, args_for_operation: dict = {}) -> None:
+    def perform_basic_operations(self, testValues: list, operation: str, type_only: type, args_for_operation: dict = {}) -> None:
         """
             The purpose of this method is to handle basic mathematical operations such as:
                 - subtraction;
@@ -275,23 +272,22 @@ class unitTest(inspect):
                 "paramspec-2" : elements.get_args_no_regarding_matches(), "paramspec-3" : elements.function_arg_requirements(), "index" : index}
         return enumData
 
-    def add_function_for_creating_tests(self, function, to_list: bool = False):
+    def add_function_for_creating_tests(self, function):
         """
             The purpose of this method is to call a user-based function, and use it to test values.
             The return value from the function to the call-point, must be of type: (list, tuple).
             Where the elements inside will be stored and used later in comparison.
         """
-        if not callable(function): raise Error("0x0124af")
         functionObject = AObj(fmeth=function)
         self.print_verbose(f"Putting object in a list ('{functionObject.get_name()}(arg1, arg2 ...)')...")
         self.additional_functions_map.append(functionObject)
 
-
     def assertEquals(self, element: list, correct_element: any,
-        text: str = "The following function has been called!", text_on_correct: any = "Correct::result",
+        text: str = "Incorrect results!", text_on_correct: any = "Correct::result",
         strict_equals: typing.Optional[bool] = False,
-        strict_equals_args: typing.Optional[dict] = {}, values_Stored: bool = False, is_created: bool = False,
+        strict_equals_args: typing.Optional[dict] = {}, values_Stored: bool = False,
         manualOperation: bool = False) -> None:
+        self.compare_results.compare_value = {"results":[]}
         """
             The purpose of this method is to compare two values for their correctness. In case if they are not equal
             to one another, it'll throw an AssertionError, which indicates that the value requested is not equal to the other value.
@@ -337,16 +333,16 @@ class unitTest(inspect):
         if not isinstance(text, str): raise Error("0x0bac")
         self.print_verbose("Total arguments provided: %d\n On correct: %s, On incorrect: %s" % (len(element), text_on_correct, text))
         test_passed = 0
-        if self.actualValues and is_created:
+        if self.actualValues:
             targets = []
             for _ in enumerate(correct_element, 0):
                 results = None
                 args = []
-                for elms in elements:
+                for elms in _[1]:
                     if isinstance(elms, dict): results = elms; continue
                     args.append(elms)
                 if not results:
-                    print("Got none?")
+                    self.print_verbose("warning: got none?")
                     self.compare_results.compare_value["results"].append({"targets": {"s1" : "Unknown", "s2": None}, "success" : -1}); continue
                 results = results["results-of-operations"]
                 self._called = self.function.call_function(arguments=tuple(args))
@@ -371,8 +367,9 @@ class unitTest(inspect):
                     targets = [self._called, results]
                     self.compare_results.compare_value["results"].append({"targets": {"s1": self._called, "s2": results}, "success": 1})
                 if targets:
-                    self.print_verbose(f"Test case #{_} (s1: {targets[0]}, s2: {targets[1]}): passed!")
-                else: self.print_verbose(f"Test case #{_}: failed!")
+                    self.print_verbose(f"Test case #{_[0]+1} (s1: {targets[0]}, s2: {targets[1]}): passed!")
+                    continue
+                self.print_verbose(f"Test case #{_}: failed!")
         elif manualOperation: 
             for index, elements in enumerate(correct_element, 0):
                 self._called = self.function.call_function(arguments=element[index])
@@ -390,26 +387,31 @@ class unitTest(inspect):
             self.assertion(compare_1=self._called, compare_2=correct_element, is_strict_equals=strict_equals, args=strict_equals_args)
             self.compare_results.compare_value["results"].append({"targets": {"s1": self._called, "s2": correct_element}, "success": 1}, text=text)
             test_passed += 1
-
+        # checking in case if there are any errors with values that are used to be outputed.
         if not isinstance(text_on_correct, str): raise Error("0x0bac")
-        if not isinstance(text, str): raise Error("0x0bac)s")
+        if not isinstance(text, str): raise Error("0x0bac")
 
+        # outputing that the test was finished: successfully, indicating: failures and successes based on the values.
         print("\n\n" + text_on_correct + "\n\nTests passed...: %d/%d, total failed: %d." % (len(self.compare_results.get_success()), len(correct_element), len(self.compare_results.get_failure()))\
          + "\n\n\nTesting has finished ... ", end="\n\n")
+        return
         
     def assertion(self, compare_1: any, compare_2: any, is_strict_equals: bool, args: list, text: str) -> None:
+        """
+        Compare values.
+        """
         assert (compare_1 == compare_2) if not is_strict_equals else (self.strict_equals(compare_2, **args)),\
         f"It must be {compare_2}, instead we got {compare_1}. Msg: {text}"
     
     def create_test_values(self, rangeVals: typing.Union[list, tuple], size: typing.Optional[int] = 64, inner_Size: typing.Optional[int] = 2, random_: typing.Optional[bool] = True,
         args: dict = {"stringLengthMax" : 8, "stringLengthMin" : 2, "regexMatchOnly": r"[A-z,0-9]"}):
+
         if "regexMatchOnly" not in args:
             args["regexMatchOnly"] = None
         if "stringLengthMax" not in args:
             args["stringLengthMax"] = 8
         if "stringLengthMin" not in args:
             args["stringLengthMin"] = 2
-
         self.print_verbose(f'''Preparing to create elements:
     * Range values: interval [{rangeVals[0][0]}; {rangeVals[0][1]}], type: {rangeVals[1]};
     * Size (total size): {size};
@@ -433,6 +435,7 @@ class unitTest(inspect):
         In order to be more efficient, instead of getting the length of the whole list that is nested, which is the 2nd lervel list. 
         Let... a defined function accepts 4 params (parameters).... the list must include: [[([1,2,3,4],[4,3,2,1] ... ]), 4]].
         """
+        self.is_created_man = True
         self.test_values = created
 
     def use_as_test_function(self, _object: object, size: int, _types: list, to_list: bool = False, manual_innerSize: int = 0, size_limit=pow(2, 16),
@@ -445,47 +448,73 @@ class unitTest(inspect):
         if not isinstance(returnValue, typing.Union[list, tuple]) or not returnValue: raise Error("0x0bad")
         self.test_values = returnValue
 
+    def timeConsumption(self, target: object, kwargs: dict = {}) -> float:
+        """
+        The purpose of this method is to measure time consumption based on function call; and processes in the function that are implemented.
+        
+        (where :key = param)
+        target: It is required an object as value to be passed as argument to that method.
+        kwargs (optional): a dictionary list with args for the target function. 
+
+        Returns:
+            float: the measured time.
+            
+        """
+        from time import time
+        if not callable(target): raise ValueError("Provided target object is not callable!")
+        rec = time()
+        target(**kwargs)
+        return time() - rec
+
     def perform_changes(self, type_required: type):
         function_length = self.function.get_arg_length()
         IObject = operationsBased.to_object(self.test_values[0])
         elements = IObject.extract_only_specific_type(type_required)
         self.test_values = IObject.pack(elements, function_length)
 
-    def genAccordingType(self, actual_Type: object, interval: tuple, arguments: dict):
-        from random import randint, choice, shuffle
-        import regex
-        from string import ascii_lowercase, ascii_uppercase
+    def prepare_list_accordingType(self, _type: object, interval: tuple) -> list:
         actual = list(ascii_lowercase)
         actual.extend(list(ascii_uppercase))
         actual.extend([_ for _ in range(interval[0], interval[1], 1)])
         actual.extend([float(_) for _ in range(interval[0], interval[1], 1)])
         shuffle(actual)
-        chosen = choice(actual)
+        for index, elements in enumerate(actual, 0):
+            if not isinstance(elements, _type):
+                del actual[index]
+        return actual
+
+    def genAccordingType(self, actual_Type: object, interval: tuple, arguments: dict):
+        actual = self.prepare_list_accordingType(_type=actual_Type, interval=interval)
         n = 0
         n1 = 0
+        chosen = actual[0]
         findcharacters = lambda target, range_min, range_max: "".join(choice(target) for _ in range(0, randint(range_min, range_max), 1))
-        while not isinstance(chosen, actual_Type) and n1 < abs(interval[0]-interval[1]):
-            for _ in actual:
-                if actual_Type == list or actual_Type == tuple:
-                    if isinstance(chosen, (list, tuple)):chosen.append(actual[n]); n+=1; continue
-                    chosen = [actual[n]]
-                else:
-                    perm = list(ascii_lowercase)
-                    perm.extend(ascii_lowercase)
-                    if actual_Type == str and isinstance(n, str):
-                        padd += findcharacters(perm, arguments["stringLengthMin"],arguments["stringLengthMax"])
-                        chosen = n+padd
-                        if arguments["regexMatchOnly"]:
-                            while not regex.match(arguments["regexMatchOnly", chosen]):
-                                chosen = findcharacters(perm, arguments["stringLengthMin"], arguments["stringLengthMax"])
-                        continue
-                    if actual_Type == str and not isinstance(n, str):
-                        chosen = findcharacters(perm, arguments["stringLengthMin"], arguments["stringLengthMax"])
-                        if arguments["regexMatchOnly"]:
-                            while not regex.match(arguments["regexMatchOnly"], chosen):
-                                chosen = findcharacters(perm, arguments["stringLengthMin"], arguments["stringLengthMax"])
-                        continue
-                    chosen = actual[n]
+        while n1 < abs(interval[0]-interval[1]):
+            if actual_Type == list or actual_Type == tuple:
+                if isinstance(chosen, (list, tuple)):chosen.append(actual[n]); n+=1; continue
+                chosen = [actual[n]]
+            else:
+                perm = list(ascii_lowercase)
+                perm.extend(ascii_lowercase)
+                if actual_Type == str:
+                    padd = findcharacters(perm, arguments["stringLengthMin"],arguments["stringLengthMax"])
+                    if arguments["regexMatchOnly"]:
+                        while not regex.match(arguments["regexMatchOnly"], padd):
+                            padd += findcharacters(perm, arguments["stringLengthMin"], arguments["stringLengthMax"])
+                    chosen = padd
+                    temp_n = 0
+                    while not isinstance(chosen, str):
+                        chosen = actual[temp_n]
+                        temp_n += 1
+                    n += 1
+                    n1 += 1
+                    continue
+                chosen = actual[n]
+                temp_N = 0
+                while not isinstance(chosen, actual_Type):
+                    if temp_N > len(actual)-1: chosen = self.genAccordingType(actual_Type, interval=(interval[0], interval[1])); break
+                    chosen = actual[temp_N]
+                    temp_N += 1
             n += 1
             n1 += 1
         return chosen
@@ -493,8 +522,8 @@ class unitTest(inspect):
     def load_function(self):
         # or use callable(...).
         if not callable(self.function):
-            self.exit_error(": provided function is not callable")
-        self.print_verbose(": success: provided function is callable!")
+            self.exit_error("error: provided function is not callable")
+        self.print_verbose("success: provided function is callable!")
         self.function = AObj(self.function) # actual target method
         self.function_length = self.function.get_arg_length()
         self.function_arg_requirements = self.function.function_arg_requirements()

@@ -291,7 +291,7 @@ def recheck(values: list, type: any, warnings: typing.Optional[bool] = True):
             logging.warning("%s element skipped, due to unmatched type occurance! Within (%s)" % (elements, ",".join(str(elements) for elements in type)))
     return rechecked
 
-def addition(values: typing.Union[list, tuple], stored=False, verbosity: typing.Optional[bool] = False, warnings : typing.Optional[bool] = True):
+def addition(values: typing.Union[list, tuple], stored=False, verbosity: typing.Optional[bool] = False, warnings : typing.Optional[bool] = True, sep: bool = False):
     """
         The purpose of this method is to perform basic addition operations, where user must provide arguments.
 
@@ -316,10 +316,12 @@ def addition(values: typing.Union[list, tuple], stored=False, verbosity: typing.
     if is_nested(values) and not stored:
         if warnings:
             logging.warning("%(WNSTV)s" % (msgs["warnings"]))
-        values = [value for value in values]
+        values = [value for value in values][0]
     newVals = []
     for elements in values:
         #print(elements)
+        #print(elements)
+        if sep and not is_nested(elements): newVals.append(sum(elements)); continue
         if isinstance(elements, (list, tuple)):
             elements = flatten(elements)
         elements = recheck(elements, (int, float), warnings=warnings)
