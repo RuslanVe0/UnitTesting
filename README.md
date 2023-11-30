@@ -233,7 +233,7 @@ timeProfiler accepts 3 parameters:
 In this case run analysis on the time measures. These analysis include:
   * comparison analysis;
   * basic statistics (max elements, min elements);
-  * time profiling;
+  * time analysis;
     
 
 ### How to use this project as a module?
